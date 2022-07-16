@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -8,7 +7,9 @@ namespace Gisha.GMTK2022.Core
     public class Dice : MonoBehaviour
     {
         [SerializeField] private Sprite[] _sideSprites = new Sprite[6];
+        [SerializeField] private float rollDelay = 1.5f;
 
+        private float _rollDelay;
         private SpriteRenderer _spriteRenderer;
 
         private void Awake()
@@ -16,24 +17,26 @@ namespace Gisha.GMTK2022.Core
             _spriteRenderer = GetComponent<SpriteRenderer>();
         }
 
-        private void Start()
+        private void LateUpdate()
         {
-            StartCoroutine(DiceRoutine());
+            if (_rollDelay > 0)
+                _rollDelay -= Time.deltaTime;
         }
 
-        private IEnumerator DiceRoutine()
+        private int DiceRoll()
         {
-            while (true)
-            {
-                yield return new WaitForSeconds(1f);
-                _spriteRenderer.sprite = _sideSprites[Random.Range(0, _sideSprites.Length)];
-            }
+            int result = Random.Range(1, 7);
+            _spriteRenderer.sprite = _sideSprites[result - 1];
+            return result;
         }
 
         private void OnCollisionEnter2D(Collision2D col)
         {
-            if (col.collider.CompareTag("Player"))
-                Debug.Log("Roll of the dice!");
+            if (col.collider.CompareTag("Player") && _rollDelay <= 0)
+            {
+                Debug.Log("Roll of the dice with result: " + DiceRoll());
+                _rollDelay = rollDelay;
+            }
         }
     }
 }
