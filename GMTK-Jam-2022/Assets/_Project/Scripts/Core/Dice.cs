@@ -1,5 +1,4 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 using Random = UnityEngine.Random;
 
 namespace Gisha.GMTK2022.Core
@@ -8,9 +7,12 @@ namespace Gisha.GMTK2022.Core
     {
         [SerializeField] private Sprite[] _sideSprites = new Sprite[6];
         [SerializeField] private float rollDelay = 1.5f;
-
+        [SerializeField] private DiceType diceType;
+        
         private float _rollDelay;
         private SpriteRenderer _spriteRenderer;
+
+        public DiceType DiceType => diceType;
 
         private void Awake()
         {
@@ -38,5 +40,14 @@ namespace Gisha.GMTK2022.Core
                 _rollDelay = rollDelay;
             }
         }
+    }
+
+    public enum DiceType
+    {
+        Master,
+        EnemyType,
+        EnemyCount,
+        WeaponType,
+        Location
     }
 }
