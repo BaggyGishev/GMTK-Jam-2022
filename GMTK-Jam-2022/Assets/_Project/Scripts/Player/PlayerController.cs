@@ -1,6 +1,7 @@
-﻿using UnityEngine;
+﻿using Gisha.GMTK2022.Core;
+using UnityEngine;
 
-namespace Gisha.GMTK2022.Core
+namespace Gisha.GMTK2022.Player
 {
     [RequireComponent(typeof(Rigidbody2D), typeof(Collider2D))]
     public class PlayerController : MonoBehaviour, IDamageable
@@ -32,9 +33,9 @@ namespace Gisha.GMTK2022.Core
             Move();
         }
 
-        public void TakeDamage()
+        public void TakeDamage(int dmg)
         {
-            _health--;
+            _health -= dmg;
 
             if (_health <= 0)
                 Die();

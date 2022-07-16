@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Gisha.GMTK2022.Core
+namespace Gisha.GMTK2022.Player
 {
     public class CameraController : MonoBehaviour
     {
