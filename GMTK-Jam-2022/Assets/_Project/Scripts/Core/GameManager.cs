@@ -1,12 +1,17 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
 
 namespace Gisha.GMTK2022.Core
 {
     public class GameManager : MonoBehaviour
     {
-        [SerializeField] private float circularRadius = 2f;
-        
+        [SerializeField] private float delayBtwStages = 1.5f;
+        [Space] [SerializeField] private float circularRadius = 2f;
+
         private GameData GameData => ResourceGetter.GameData;
+
+        private Stack<DiceResult> _diceResults = new Stack<DiceResult>();
 
         private enum GameStage
         {
@@ -22,6 +27,16 @@ namespace Gisha.GMTK2022.Core
             InitiateStage(GameStage.Dicing);
         }
 
+        private void OnEnable()
+        {
+            Dice.DiceRolled += OnDiceRolled;
+        }
+
+        private void OnDisable()
+        {
+            Dice.DiceRolled -= OnDiceRolled;
+        }
+
         private void InitiateStage(GameStage stage)
         {
             if (stage.Equals(_currentStage))
@@ -32,8 +47,9 @@ namespace Gisha.GMTK2022.Core
             {
                 // Instantiate dices, create round rules. Watch the dices.
                 case GameStage.Dicing:
-                    Instantiate(GameData.MasterDicePrefab, Vector3.zero, Quaternion.identity);
+                    _diceResults.Clear();
 
+                    Instantiate(GameData.MasterDicePrefab, Vector3.zero, Quaternion.identity);
                     for (int i = 0; i < GameData.RulesDicePrefabs.Length; i++)
                     {
                         var rad = 2 * Mathf.PI / GameData.RulesDicePrefabs.Length * i;
@@ -50,5 +66,83 @@ namespace Gisha.GMTK2022.Core
                     break;
             }
         }
+
+        private void OnDiceRolled(DiceResult diceResult)
+        {
+            _diceResults.Push(diceResult);
+
+            var dices = FindObjectsOfType<Dice>();
+            if (dices.Length == 0)
+                StartCoroutine(SetupRulesRoutine());
+        }
+
+        private IEnumerator SetupRulesRoutine()
+        {
+            var rulesChanger = new RulesChanger(_diceResults);
+            rulesChanger.MasterSetup();
+            rulesChanger.WeaponSetup();
+            rulesChanger.LocationSetup();
+            yield return new WaitForSeconds(delayBtwStages);
+            rulesChanger.EnemySetup();
+            InitiateStage(GameStage.Battling);
+        }
+    }
+
+    public class RulesChanger
+    {
+        private DiceResult _masterRule;
+        private DiceResult _weaponRule;
+        private DiceResult _locationRule;
+        private DiceResult _enemyCountRule;
+        private DiceResult _enemyTypeRule;
+
+        public RulesChanger(Stack<DiceResult> results)
+        {
+            for (int i = 0; i < results.Count; i++)
+            {
+                var result = results.Pop();
+
+                switch (result.DiceType)
+                {
+                    case DiceType.Master:
+                        _masterRule = result;
+                        break;
+                    case DiceType.Location:
+                        _locationRule = result;
+                        break;
+                    case DiceType.EnemyCount:
+                        _enemyCountRule = result;
+                        break;
+                    case DiceType.EnemyType:
+                        _enemyTypeRule = result;
+                        break;
+                    case DiceType.WeaponType:
+                        _weaponRule = result;
+                        break;
+                }
+            }
+        }
+
+        public void MasterSetup()
+        {
+            
+        }
+        
+        public void WeaponSetup()
+        {
+            
+        }
+        
+        public void LocationSetup()
+        {
+            
+        }
+        
+        public void EnemySetup()
+        {
+            
+        }
+
+        
     }
 }

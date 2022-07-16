@@ -1,14 +1,26 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using Random = UnityEngine.Random;
 
 namespace Gisha.GMTK2022.Core
 {
+    public enum DiceType
+    {
+        Master,
+        EnemyType,
+        EnemyCount,
+        WeaponType,
+        Location
+    }
+
     public class Dice : MonoBehaviour
     {
         [SerializeField] private Sprite[] _sideSprites = new Sprite[6];
         [SerializeField] private float rollDelay = 1.5f;
         [SerializeField] private DiceType diceType;
-        
+
+        public static Action<DiceResult> DiceRolled;
+
         private float _rollDelay;
         private SpriteRenderer _spriteRenderer;
 
@@ -36,18 +48,25 @@ namespace Gisha.GMTK2022.Core
         {
             if (col.collider.CompareTag("Player") && _rollDelay <= 0)
             {
-                Debug.Log("Roll of the dice with result: " + DiceRoll());
+                var result = new DiceResult(DiceRoll(), diceType);
+                DiceRolled?.Invoke(result);
                 _rollDelay = rollDelay;
+
+                Destroy(gameObject, 1f);
             }
         }
     }
 
-    public enum DiceType
+    [Serializable]
+    public class DiceResult
     {
-        Master,
-        EnemyType,
-        EnemyCount,
-        WeaponType,
-        Location
+        public DiceType DiceType { get; private set; }
+        public int Result { get; private set; }
+
+        public DiceResult(int result, DiceType diceType)
+        {
+            DiceType = diceType;
+            Result = result;
+        }
     }
 }

@@ -298,6 +298,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1de2d0b507344c75b6957e931f1bb7ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  delayBtwStages: 2
   circularRadius: 1.5
 --- !u!4 &542797880
 Transform:
