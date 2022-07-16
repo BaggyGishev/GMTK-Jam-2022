@@ -11,12 +11,14 @@ namespace Gisha.GMTK2022.Core
         [SerializeField] private GameObject[] weaponPrefabs;
         [SerializeField] private GameObject[] enemyPrefabs;
 
+        [SerializeField] private float attackImpulse = 1f;
+                
 
         public GameObject[] RulesDicePrefabs => rulesDicePrefabs;
-
         public GameObject MasterDicePrefab => masterDicePrefab;
         public GameObject[] WeaponPrefabs => weaponPrefabs;
-
         public GameObject[] EnemyPrefabs => enemyPrefabs;
+
+        public float AttackImpulse => attackImpulse;
     }
 }

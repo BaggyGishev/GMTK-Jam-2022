@@ -1,7 +1,9 @@
-﻿namespace Gisha.GMTK2022.Core
+﻿using UnityEngine;
+
+namespace Gisha.GMTK2022.Core
 {
-     public interface IDamageable
-     {
-          void TakeDamage(int dmg);
-     }
+    public interface IDamageable
+    {
+        void TakeDamage(int dmg, Vector2 direction);
+    }
 }

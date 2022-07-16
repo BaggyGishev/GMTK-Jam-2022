@@ -1,4 +1,5 @@
-﻿using Gisha.GMTK2022.Core;
+﻿using System.Linq;
+using Gisha.GMTK2022.Core;
 using UnityEngine;
 
 namespace Gisha.GMTK2022.Player.Weapons
@@ -30,15 +31,18 @@ namespace Gisha.GMTK2022.Player.Weapons
 
             if (hits.Length > 0)
             {
+                hits.Where(x => !x.collider.CompareTag("Player"));
+
                 foreach (var hit in hits)
-                    hit.collider.GetComponent<IDamageable>().TakeDamage(attackDmg);
+                    hit.collider.GetComponent<IDamageable>()
+                        .TakeDamage(attackDmg, hit.point - (Vector2)transform.position);
             }
         }
-        
+
         private void OnDrawGizmosSelected()
         {
             Gizmos.color = Color.red;
-            
+
             Gizmos.DrawRay(transform.position, transform.right * attackDst);
             Gizmos.DrawWireSphere(transform.position, attackRadius);
         }

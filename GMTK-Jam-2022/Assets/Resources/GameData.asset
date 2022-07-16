@@ -20,3 +20,6 @@ MonoBehaviour:
   - {fileID: 3574066705432282912, guid: b6b86dce5bd49684a9fb9498c9a4fb93, type: 3}
   weaponPrefabs:
   - {fileID: 5676709652914497493, guid: b779bfb08989cf3499de3203dc279047, type: 3}
+  enemyPrefabs:
+  - {fileID: 6973448764408172083, guid: eecf562abc8a95947bd7569747cec849, type: 3}
+  attackImpulse: 5.5

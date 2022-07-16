@@ -11,6 +11,7 @@ namespace Gisha.GMTK2022.Player
         [SerializeField] private float moveSpeed = 1f;
         [SerializeField] private Transform handTrans;
 
+        private float _stunDelay;
         private int _health;
         private Vector2 _moveInput;
         private Rigidbody2D _rb;
@@ -47,11 +48,13 @@ namespace Gisha.GMTK2022.Player
             _weapon.transform.position = handTrans.position;
         }
 
-        public void TakeDamage(int dmg)
+        public void TakeDamage(int dmg, Vector2 direction)
         {
             _health -= dmg;
 
-            if (_health <= 0)
+            _stunDelay = 0.2f;
+            _rb.AddForce(direction.normalized * ResourceGetter.GameData.AttackImpulse, ForceMode2D.Impulse);
+            if (_health < 0)
                 Die();
         }
 
@@ -59,7 +62,7 @@ namespace Gisha.GMTK2022.Player
         {
             return new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical")).normalized;
         }
-        
+
         public Quaternion GetHandRotation()
         {
             Vector2 diff = Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position;
@@ -69,6 +72,12 @@ namespace Gisha.GMTK2022.Player
 
         private void Move()
         {
+            if (_stunDelay > 0f)
+            {
+                _stunDelay -= Time.deltaTime;
+                return;
+            }
+            
             _rb.velocity = _moveInput * moveSpeed * Time.deltaTime;
         }
 
