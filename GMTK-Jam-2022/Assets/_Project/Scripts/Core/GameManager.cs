@@ -126,25 +126,21 @@ namespace Gisha.GMTK2022.Core
 
         public void MasterSetup()
         {
-            
         }
-        
+
         public void WeaponSetup()
         {
             var prefab = ResourceGetter.GameData.WeaponPrefabs[0];
             Object.FindObjectOfType<PlayerController>().TakeWeapon(prefab);
         }
-        
+
         public void LocationSetup()
         {
-            
-        }
-        
-        public void EnemySetup()
-        {
-            
         }
 
-        
+        public void EnemySetup()
+        {
+            Object.FindObjectOfType<EnemyGenerator>().Generate(0, 2);
+        }
     }
 }
