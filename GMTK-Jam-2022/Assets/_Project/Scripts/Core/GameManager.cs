@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using Gisha.GMTK2022.Player;
 using UnityEngine;
 
 namespace Gisha.GMTK2022.Core
@@ -130,7 +131,8 @@ namespace Gisha.GMTK2022.Core
         
         public void WeaponSetup()
         {
-            
+            var prefab = ResourceGetter.GameData.WeaponPrefabs[0];
+            Object.FindObjectOfType<PlayerController>().TakeWeapon(prefab);
         }
         
         public void LocationSetup()

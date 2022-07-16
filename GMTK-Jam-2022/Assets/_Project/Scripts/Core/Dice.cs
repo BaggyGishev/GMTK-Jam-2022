@@ -21,6 +21,7 @@ namespace Gisha.GMTK2022.Core
 
         public static Action<DiceResult> DiceRolled;
 
+        private int _result;
         private float _rollDelay;
         private SpriteRenderer _spriteRenderer;
 
@@ -48,12 +49,16 @@ namespace Gisha.GMTK2022.Core
         {
             if (col.collider.CompareTag("Player") && _rollDelay <= 0)
             {
-                var result = new DiceResult(DiceRoll(), diceType);
-                DiceRolled?.Invoke(result);
+                _result = DiceRoll();
                 _rollDelay = rollDelay;
-
                 Destroy(gameObject, 1f);
             }
+        }
+
+        private void OnDestroy()
+        {
+            var result = new DiceResult(_result, diceType);
+            DiceRolled?.Invoke(result);
         }
     }
 

@@ -25,7 +25,7 @@ namespace Gisha.GMTK2022.Player.Weapons
             _animator.SetTrigger("Use");
 
             var hits =
-                Physics2D.CircleCastAll(transform.position, attackRadius, GetDirectionToMouse(), attackDst,
+                Physics2D.CircleCastAll(transform.position, attackRadius, transform.right, attackDst,
                     _enemyLayerMask);
 
             if (hits.Length > 0)
@@ -34,23 +34,12 @@ namespace Gisha.GMTK2022.Player.Weapons
                     hit.collider.GetComponent<IDamageable>().TakeDamage(attackDmg);
             }
         }
-
-        private Vector2 GetDirectionToMouse()
-        {
-            return (Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position).normalized;
-        }
-
+        
         private void OnDrawGizmosSelected()
         {
             Gizmos.color = Color.red;
-            Ray ray;
-
-            if (Application.isPlaying)
-                ray = new Ray(transform.position, GetDirectionToMouse());
-            else
-                ray = new Ray(transform.position, Vector3.right);
-
-            Gizmos.DrawRay(ray.origin, ray.direction * attackDst);
+            
+            Gizmos.DrawRay(transform.position, transform.right * attackDst);
             Gizmos.DrawWireSphere(transform.position, attackRadius);
         }
     }

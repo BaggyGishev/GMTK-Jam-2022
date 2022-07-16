@@ -1,4 +1,5 @@
 ﻿using Gisha.GMTK2022.Core;
+using Gisha.GMTK2022.Player.Weapons;
 using UnityEngine;
 
 namespace Gisha.GMTK2022.Player
@@ -8,10 +9,12 @@ namespace Gisha.GMTK2022.Player
     {
         [SerializeField] private int maxHealth = 3;
         [SerializeField] private float moveSpeed = 1f;
+        [SerializeField] private Transform handTrans;
 
         private int _health;
         private Vector2 _moveInput;
         private Rigidbody2D _rb;
+        private Weapon _weapon;
 
         private void Awake()
         {
@@ -26,11 +29,22 @@ namespace Gisha.GMTK2022.Player
         private void Update()
         {
             _moveInput = GetKeyboardInput();
+
+            if (Input.GetMouseButtonDown(0) && _weapon != null)
+                _weapon.Use();
+
+            handTrans.rotation = GetHandRotation();
         }
 
         private void FixedUpdate()
         {
             Move();
+        }
+
+        public void TakeWeapon(GameObject weaponPrefab)
+        {
+            _weapon = Instantiate(weaponPrefab, handTrans).GetComponent<Weapon>();
+            _weapon.transform.position = handTrans.position;
         }
 
         public void TakeDamage(int dmg)
@@ -44,6 +58,13 @@ namespace Gisha.GMTK2022.Player
         private Vector2 GetKeyboardInput()
         {
             return new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical")).normalized;
+        }
+        
+        public Quaternion GetHandRotation()
+        {
+            Vector2 diff = Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position;
+            float rotZ = Mathf.Atan2(diff.y, diff.x) * Mathf.Rad2Deg;
+            return Quaternion.Euler(0f, 0f, rotZ);
         }
 
         private void Move()

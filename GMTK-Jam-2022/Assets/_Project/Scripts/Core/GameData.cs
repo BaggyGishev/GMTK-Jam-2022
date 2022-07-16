@@ -7,10 +7,13 @@ namespace Gisha.GMTK2022.Core
     {
         [SerializeField] private GameObject masterDicePrefab;
         [SerializeField] private GameObject[] rulesDicePrefabs;
+        
+        [SerializeField] private GameObject[] weaponPrefabs;
 
 
         public GameObject[] RulesDicePrefabs => rulesDicePrefabs;
 
         public GameObject MasterDicePrefab => masterDicePrefab;
+        public GameObject[] WeaponPrefabs => weaponPrefabs;
     }
 }
