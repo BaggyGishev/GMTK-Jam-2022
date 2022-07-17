@@ -26,6 +26,7 @@ namespace Gisha.GMTK2022.UI
 
         public void OnClick_ReturnToMenu()
         {
+            SceneManager.LoadScene("Menu");
         }
 
         public void OnClick_Restart()
