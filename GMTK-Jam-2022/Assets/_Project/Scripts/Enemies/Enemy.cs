@@ -1,3 +1,4 @@
+using System;
 using Gisha.GMTK2022.Core;
 using UnityEngine;
 
@@ -10,10 +11,12 @@ namespace Gisha.GMTK2022.Enemies
         [SerializeField] private float moveSpeed = 1f;
         protected float _delay;
 
+        public static Action EnemyDestroyed;
+
         public float AttackDelay => attackDelay;
 
         public float MoveSpeed => moveSpeed;
-        
+
         protected LayerMask _playerLayerMask;
         protected Transform _target;
         private Rigidbody2D _rb;
@@ -27,6 +30,7 @@ namespace Gisha.GMTK2022.Enemies
 
         private void Die()
         {
+            EnemyDestroyed?.Invoke();
             Destroy(gameObject);
         }
 
@@ -36,7 +40,7 @@ namespace Gisha.GMTK2022.Enemies
 
             if (health <= 0)
                 Die();
-            
+
             _rb.AddForce(direction * ResourceGetter.GameData.AttackImpulse, ForceMode2D.Impulse);
         }
     }

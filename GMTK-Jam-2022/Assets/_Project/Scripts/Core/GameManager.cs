@@ -1,7 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using Gisha.GMTK2022.Enemies;
 using Gisha.GMTK2022.Player;
 using UnityEngine;
+using Object = UnityEngine.Object;
 
 namespace Gisha.GMTK2022.Core
 {
@@ -9,10 +11,17 @@ namespace Gisha.GMTK2022.Core
     {
         [SerializeField] private float delayBtwStages = 1.5f;
         [Space] [SerializeField] private float circularRadius = 2f;
+        [SerializeField] private float nextWaveDelay = 6f;
+
+        // Round Variables.
+        private int _battleRounds;
+        private int _enemyCount, _enemyType, _weaponType, _locationType;
 
         private GameData GameData => ResourceGetter.GameData;
-
         private Stack<DiceResult> _diceResults = new Stack<DiceResult>();
+        private EnemyGenerator _enemyGenerator;
+        private LocationChanger _locationChanger;
+        private PlayerController _playerController;
 
         private enum GameStage
         {
@@ -22,6 +31,13 @@ namespace Gisha.GMTK2022.Core
         }
 
         private GameStage _currentStage;
+
+        private void Awake()
+        {
+            _enemyGenerator = FindObjectOfType<EnemyGenerator>();
+            _locationChanger = FindObjectOfType<LocationChanger>();
+            _playerController = FindObjectOfType<PlayerController>();
+        }
 
         private void Start()
         {
@@ -48,25 +64,58 @@ namespace Gisha.GMTK2022.Core
             {
                 // Instantiate dices, create round rules. Watch the dices.
                 case GameStage.Dicing:
-                    _diceResults.Clear();
-
-                    Instantiate(GameData.MasterDicePrefab, Vector3.zero, Quaternion.identity);
-                    for (int i = 0; i < GameData.RulesDicePrefabs.Length; i++)
-                    {
-                        var rad = 2 * Mathf.PI / GameData.RulesDicePrefabs.Length * i;
-                        var h = Mathf.Cos(rad);
-                        var v = Mathf.Sin(rad);
-                        var position = Vector3.zero + new Vector3(h, v, 0f) * circularRadius;
-
-                        Instantiate(GameData.RulesDicePrefabs[i], position, Quaternion.identity);
-                    }
-
+                    StartCoroutine(DiceStageRoutine());
                     break;
                 // Initialize round rules. Watch enemies count.
                 case GameStage.Battling:
+                    StartCoroutine(BattleStageRoutine());
                     break;
             }
         }
+
+        #region Stage Routines
+
+        private IEnumerator BattleStageRoutine()
+        {
+            _playerController.TakeWeapon(ResourceGetter.GameData.WeaponPrefabs[_weaponType]);
+            _locationChanger.SetupBattleLocation(_locationType);
+
+            // Spawning enemies.
+            while (_battleRounds > 0)
+            {
+                _battleRounds--;
+                _enemyGenerator.Generate(_enemyType, _enemyCount);
+                yield return new WaitForSeconds(nextWaveDelay);
+            }
+
+            while (GameObject.FindGameObjectsWithTag("Enemy").Length > 0)
+                yield return new WaitForSeconds(0.25f);
+
+            InitiateStage(GameStage.Dicing);
+        }
+
+        private IEnumerator DiceStageRoutine()
+        {
+            yield return null;
+            _playerController.ResetWeapon();
+            _locationChanger.SetupBettingLocation();
+
+            _diceResults.Clear();
+
+            Instantiate(GameData.MasterDicePrefab, Vector3.zero, Quaternion.identity);
+            for (int i = 0; i < GameData.RulesDicePrefabs.Length; i++)
+            {
+                var rad = 2 * Mathf.PI / GameData.RulesDicePrefabs.Length * i;
+                var h = Mathf.Cos(rad);
+                var v = Mathf.Sin(rad);
+                var position = Vector3.zero + new Vector3(h, v, 0f) * circularRadius;
+
+                Instantiate(GameData.RulesDicePrefabs[i], position, Quaternion.identity);
+            }
+        }
+
+        #endregion
+
 
         private void OnDiceRolled(DiceResult diceResult)
         {
@@ -80,11 +129,12 @@ namespace Gisha.GMTK2022.Core
         private IEnumerator SetupRulesRoutine()
         {
             var rulesChanger = new RulesChanger(_diceResults);
-            rulesChanger.MasterSetup();
-            rulesChanger.WeaponSetup();
-            rulesChanger.LocationSetup();
+            rulesChanger.WeaponSetup(out _weaponType);
+            rulesChanger.LocationSetup(out _locationType);
             yield return new WaitForSeconds(delayBtwStages);
-            rulesChanger.EnemySetup();
+            rulesChanger.EnemySetup(out _enemyType, out _enemyCount);
+            rulesChanger.MasterSetup(out _battleRounds);
+
             InitiateStage(GameStage.Battling);
         }
     }
@@ -124,24 +174,25 @@ namespace Gisha.GMTK2022.Core
             }
         }
 
-        public void MasterSetup()
+        public void MasterSetup(out int roundsCount)
         {
+            roundsCount = _masterRule.Result;
         }
 
-        public void WeaponSetup()
+        public void WeaponSetup(out int weaponType)
         {
-            var prefab = ResourceGetter.GameData.WeaponPrefabs[_weaponRule.Result - 1];
-            Object.FindObjectOfType<PlayerController>().TakeWeapon(prefab);
+            weaponType = _weaponRule.Result - 1;
         }
 
-        public void LocationSetup()
+        public void LocationSetup(out int locationType)
         {
-            Object.FindObjectOfType<LocationChanger>().SetupBattleLocation(_locationRule.Result - 1);
+            locationType = _locationRule.Result - 1;
         }
 
-        public void EnemySetup()
+        public void EnemySetup(out int enemyType, out int enemyCount)
         {
-            Object.FindObjectOfType<EnemyGenerator>().Generate(_enemyTypeRule.Result - 1, _enemyCountRule.Result);
+            enemyType = _enemyTypeRule.Result - 1;
+            enemyCount = _enemyCountRule.Result;
         }
     }
 }

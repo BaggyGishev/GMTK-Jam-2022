@@ -101,4 +101,4 @@ MonoBehaviour:
   pivotPoint: {fileID: 4438447444685496444}
   whatIsSolid:
     serializedVersion: 2
-    m_Bits: 384
+    m_Bits: 128

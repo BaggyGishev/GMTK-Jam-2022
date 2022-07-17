@@ -45,9 +45,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 604d4e43cdc54eff9e344840e093c681, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackDelay: 0
+  attackDelay: 0.2
   attackDmg: 1
-  attackDst: 1.4
+  attackDst: 1.88
   attackRadius: 0.3
 --- !u!95 &1891384893104278171
 Animator:

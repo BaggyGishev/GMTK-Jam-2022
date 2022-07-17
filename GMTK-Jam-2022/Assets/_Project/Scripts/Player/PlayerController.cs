@@ -49,6 +49,15 @@ namespace Gisha.GMTK2022.Player
             _weapon.transform.position = handTrans.position;
         }
 
+        public void ResetWeapon()
+        {
+            if (_weapon == null)
+                return;
+
+            Destroy(_weapon.gameObject);
+            _weapon = null;
+        }
+
         public void TakeDamage(int dmg, Vector2 direction)
         {
             StartCoroutine(DamageGettingRoutine(dmg, direction));

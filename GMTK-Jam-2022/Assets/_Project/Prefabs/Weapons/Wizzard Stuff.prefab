@@ -130,7 +130,7 @@ MonoBehaviour:
   shotPos: {fileID: 6460123449853546618}
   projectilePrefab: {fileID: 4438447444685496446, guid: 1d6b52fcc88ab1444b9a04e05d7cc8c4, type: 3}
   projCount: 3
-  spread: 0.5
+  spread: 30
 --- !u!1 &6460205681997647868
 GameObject:
   m_ObjectHideFlags: 0
