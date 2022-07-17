@@ -19,7 +19,7 @@ namespace Gisha.GMTK2022.Enemies
                 FollowPlayer();
                 _delay = AttackDelay;
 
-                _animator.SetBool("IsIdle", true);
+                _animator.SetBool("IsIdle", false);
             }
             else
             {
@@ -28,7 +28,7 @@ namespace Gisha.GMTK2022.Enemies
                 else
                     _delay -= Time.deltaTime;
 
-                _animator.SetBool("IsIdle", false);
+                _animator.SetBool("IsIdle", true);
             }
         }
 
