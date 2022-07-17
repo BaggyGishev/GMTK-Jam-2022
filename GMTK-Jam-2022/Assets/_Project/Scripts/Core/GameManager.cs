@@ -73,7 +73,7 @@ namespace Gisha.GMTK2022.Core
             _diceResults.Push(diceResult);
 
             var dices = FindObjectsOfType<Dice>();
-            if (dices.Length == 0)
+            if (dices == null || dices.Length == 0)
                 StartCoroutine(SetupRulesRoutine());
         }
 
@@ -99,10 +99,10 @@ namespace Gisha.GMTK2022.Core
 
         public RulesChanger(Stack<DiceResult> results)
         {
-            for (int i = 0; i < results.Count; i++)
+            while (results.Count > 0)
             {
                 var result = results.Pop();
-
+                Debug.Log(results.Count);
                 switch (result.DiceType)
                 {
                     case DiceType.Master:
@@ -136,6 +136,7 @@ namespace Gisha.GMTK2022.Core
 
         public void LocationSetup()
         {
+            Object.FindObjectOfType<LocationChanger>().SetupBattleLocation(_locationRule.Result);
         }
 
         public void EnemySetup()
