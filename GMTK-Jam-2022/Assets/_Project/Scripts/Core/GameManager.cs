@@ -120,8 +120,13 @@ namespace Gisha.GMTK2022.Core
             {
                 RoundTime -= Time.deltaTime;
                 yield return null;
-                RoundEnded?.Invoke();
             }
+
+            // Increase difficulty.
+            if (maxRoundTime > 1f)
+                maxRoundTime -= 0.1f;
+
+            RoundEnded?.Invoke();
         }
 
 
@@ -211,7 +216,7 @@ namespace Gisha.GMTK2022.Core
 
         public void WeaponSetup(out int weaponType)
         {
-            weaponType = 5;
+            weaponType = _weaponRule.Result - 1;
         }
 
         public void LocationSetup(out int locationType)

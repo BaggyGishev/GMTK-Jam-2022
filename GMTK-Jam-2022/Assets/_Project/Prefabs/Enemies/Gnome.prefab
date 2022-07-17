@@ -85,7 +85,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 2
-  attackDelay: 0.3
+  attackDelay: 0.2
   moveSpeed: 6
   attackDst: 0.4
 --- !u!95 &3542306060337858748

@@ -149,7 +149,7 @@ MonoBehaviour:
   maxHealth: 3
   moveSpeed: 280
   handTrans: {fileID: 8246274756026946800}
-  invincibleTime: 0
+  invincibleTime: 0.25
 --- !u!95 &1803953019
 Animator:
   serializedVersion: 3
