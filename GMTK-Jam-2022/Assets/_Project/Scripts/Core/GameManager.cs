@@ -22,10 +22,13 @@ namespace Gisha.GMTK2022.Core
         [SerializeField] private float maxRoundTime = 6f;
 
         public static Action RoundEnded;
+        public static Action<int> LevelWon;
 
         // Round Variables.
         private int _battleRounds;
         private int _enemyCount, _enemyType, _weaponType, _locationType;
+
+        private int _winStreak;
 
         public float RoundTime { private set; get; }
         private GameData GameData => ResourceGetter.GameData;
@@ -51,6 +54,7 @@ namespace Gisha.GMTK2022.Core
 
         private void Start()
         {
+            _winStreak = 0;
             InitiateStage(GameStage.Dicing);
         }
 
@@ -103,6 +107,8 @@ namespace Gisha.GMTK2022.Core
 
             _playerController.HealOne();
             InitiateStage(GameStage.Dicing);
+            _winStreak++;
+            LevelWon?.Invoke(_winStreak);
         }
 
         private IEnumerator RoundRoutine()
