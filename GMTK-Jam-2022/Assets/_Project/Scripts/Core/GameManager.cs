@@ -1,39 +1,45 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using Gisha.GMTK2022.Enemies;
 using Gisha.GMTK2022.Player;
 using UnityEngine;
-using Object = UnityEngine.Object;
 
 namespace Gisha.GMTK2022.Core
 {
+    public enum GameStage
+    {
+        None,
+        Dicing,
+        Battling
+    }
+
     public class GameManager : MonoBehaviour
     {
+        public static GameManager Instance { get; private set; }
+
         [SerializeField] private float delayBtwStages = 1.5f;
         [Space] [SerializeField] private float circularRadius = 2f;
-        [SerializeField] private float nextWaveDelay = 6f;
+        [SerializeField] private float maxRoundTime = 6f;
 
         // Round Variables.
         private int _battleRounds;
         private int _enemyCount, _enemyType, _weaponType, _locationType;
 
+        public float RoundTime { private set; get; }
         private GameData GameData => ResourceGetter.GameData;
+        public float MaxRoundTime => maxRoundTime;
+        public GameStage CurrentStage => _currentStage;
+        
         private Stack<DiceResult> _diceResults = new Stack<DiceResult>();
         private EnemyGenerator _enemyGenerator;
         private LocationChanger _locationChanger;
         private PlayerController _playerController;
 
-        private enum GameStage
-        {
-            None,
-            Dicing,
-            Battling
-        }
-
         private GameStage _currentStage;
 
         private void Awake()
         {
+            Instance = this;
+
             _enemyGenerator = FindObjectOfType<EnemyGenerator>();
             _locationChanger = FindObjectOfType<LocationChanger>();
             _playerController = FindObjectOfType<PlayerController>();
@@ -56,7 +62,7 @@ namespace Gisha.GMTK2022.Core
 
         private void InitiateStage(GameStage stage)
         {
-            if (stage.Equals(_currentStage))
+            if (stage.Equals(CurrentStage))
                 Debug.LogError("Stage overlapping.");
             _currentStage = stage;
 
@@ -85,7 +91,7 @@ namespace Gisha.GMTK2022.Core
             {
                 _battleRounds--;
                 _enemyGenerator.Generate(_enemyType, _enemyCount);
-                yield return new WaitForSeconds(nextWaveDelay);
+                yield return RoundRoutine();
             }
 
             while (GameObject.FindGameObjectsWithTag("Enemy").Length > 0)
@@ -93,6 +99,18 @@ namespace Gisha.GMTK2022.Core
 
             InitiateStage(GameStage.Dicing);
         }
+
+        private IEnumerator RoundRoutine()
+        {
+            RoundTime = MaxRoundTime;
+
+            while (RoundTime > 0f)
+            {
+                RoundTime -= Time.deltaTime;
+                yield return null;
+            }
+        }
+
 
         private IEnumerator DiceStageRoutine()
         {
