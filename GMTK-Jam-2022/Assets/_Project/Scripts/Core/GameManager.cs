@@ -101,6 +101,7 @@ namespace Gisha.GMTK2022.Core
             while (GameObject.FindGameObjectsWithTag("Enemy").Length > 0)
                 yield return new WaitForSeconds(0.25f);
 
+            _playerController.HealOne();
             InitiateStage(GameStage.Dicing);
         }
 
@@ -176,7 +177,6 @@ namespace Gisha.GMTK2022.Core
             while (results.Count > 0)
             {
                 var result = results.Pop();
-                Debug.Log(results.Count);
                 switch (result.DiceType)
                 {
                     case DiceType.Master:

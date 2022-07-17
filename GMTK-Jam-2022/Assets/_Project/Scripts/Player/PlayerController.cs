@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using Gisha.GMTK2022.Core;
 using Gisha.GMTK2022.Player.Weapons;
 using UnityEngine;
@@ -11,6 +12,8 @@ namespace Gisha.GMTK2022.Player
         [SerializeField] private int maxHealth = 3;
         [SerializeField] private float moveSpeed = 1f;
         [SerializeField] private Transform handTrans;
+
+        public static Action<int> HealthChanged;
 
         private float _stunDelay;
         private int _health;
@@ -63,6 +66,15 @@ namespace Gisha.GMTK2022.Player
             StartCoroutine(DamageGettingRoutine(dmg, direction));
         }
 
+        public void HealOne()
+        {
+            _health++;
+            if (_health > maxHealth)
+                _health = maxHealth;
+
+            HealthChanged(_health);
+        }
+
         private IEnumerator DamageGettingRoutine(int dmg, Vector2 direction)
         {
             _stunDelay = 0.2f;
@@ -72,6 +84,8 @@ namespace Gisha.GMTK2022.Player
             _health -= dmg;
             if (_health < 0)
                 Die();
+
+            HealthChanged(_health);
         }
 
 
