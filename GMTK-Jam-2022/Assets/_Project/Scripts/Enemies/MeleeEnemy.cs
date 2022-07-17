@@ -7,7 +7,7 @@ namespace Gisha.GMTK2022.Enemies
     {
         [Header("Melee Variables")] public float attackDst;
         private Vector2 _viewDir;
-        
+
         private void FixedUpdate()
         {
             _viewDir = (_target.transform.position - transform.position).normalized;
@@ -18,6 +18,8 @@ namespace Gisha.GMTK2022.Enemies
             {
                 FollowPlayer();
                 _delay = AttackDelay;
+
+                _animator.SetBool("IsIdle", true);
             }
             else
             {
@@ -25,13 +27,9 @@ namespace Gisha.GMTK2022.Enemies
                     DamagePlayer();
                 else
                     _delay -= Time.deltaTime;
-            }
-        }
 
-        private void FollowPlayer()
-        {
-            transform.position =
-                Vector2.MoveTowards(transform.position, _target.transform.position, MoveSpeed * Time.deltaTime);
+                _animator.SetBool("IsIdle", false);
+            }
         }
 
         private void DamagePlayer()

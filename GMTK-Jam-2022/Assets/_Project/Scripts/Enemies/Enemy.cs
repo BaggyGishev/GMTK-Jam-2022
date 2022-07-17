@@ -19,10 +19,12 @@ namespace Gisha.GMTK2022.Enemies
 
         protected LayerMask _playerLayerMask;
         protected Transform _target;
+        protected Animator _animator;
         private Rigidbody2D _rb;
 
         public virtual void Awake()
         {
+            _animator = GetComponent<Animator>();
             _playerLayerMask = 1 << LayerMask.NameToLayer("Player");
             _target = GameObject.FindGameObjectWithTag("Player").transform;
             _rb = GetComponent<Rigidbody2D>();
@@ -32,6 +34,12 @@ namespace Gisha.GMTK2022.Enemies
         {
             EnemyDestroyed?.Invoke();
             Destroy(gameObject);
+        }
+
+        protected void FollowPlayer()
+        {
+            transform.position =
+                Vector2.MoveTowards(transform.position, _target.transform.position, MoveSpeed * Time.deltaTime);
         }
 
         public void TakeDamage(int dmg, Vector2 direction)

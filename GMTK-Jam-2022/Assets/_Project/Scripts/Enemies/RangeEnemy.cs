@@ -17,7 +17,10 @@ namespace Gisha.GMTK2022.Enemies
             RaycastHit2D shootHitInfo = Physics2D.Raycast(transform.position, _viewDir, shootRayDist, _playerLayerMask);
 
             if (shootHitInfo.collider == null)
+            {
                 FollowPlayer();
+                _animator.SetBool("IsIdle", false);
+            }
 
             else
             {
@@ -28,15 +31,11 @@ namespace Gisha.GMTK2022.Enemies
                 }
                 else
                     _delay -= Time.deltaTime;
+                
+                _animator.SetBool("IsIdle", true);
             }
         }
-
-        private void FollowPlayer()
-        {
-            transform.position =
-                Vector2.MoveTowards(transform.position, _target.transform.position, MoveSpeed * Time.deltaTime);
-        }
-
+        
         private void ShootProjectile()
         {
             float rotZ = Mathf.Atan2(_viewDir.y, _viewDir.x) * Mathf.Rad2Deg - 90f;
