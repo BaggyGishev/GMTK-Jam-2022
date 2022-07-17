@@ -103,7 +103,7 @@ TrailRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Time: 0.15
+  m_Time: 0.5
   m_Parameters:
     serializedVersion: 3
     widthMultiplier: 0.1
@@ -133,8 +133,8 @@ TrailRenderer:
       m_RotationOrder: 4
     colorGradient:
       serializedVersion: 2
-      key0: {r: 1, g: 0.5529412, b: 0, a: 1}
-      key1: {r: 1, g: 0.5529412, b: 0, a: 1}
+      key0: {r: 1, g: 0.027380409, b: 0, a: 1}
+      key1: {r: 1, g: 0.027450982, b: 0, a: 1}
       key2: {r: 0, g: 0, b: 0, a: 0}
       key3: {r: 0, g: 0, b: 0, a: 0}
       key4: {r: 0, g: 0, b: 0, a: 0}
@@ -188,6 +188,7 @@ MonoBehaviour:
   whatIsSolid:
     serializedVersion: 2
     m_Bits: 320
+  destroySFXName: 
 --- !u!1 &4322811503805512522
 GameObject:
   m_ObjectHideFlags: 0
@@ -260,7 +261,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: -4604430682936023773, guid: 4546186e03ee8524688f84e349fedc58, type: 3}
-  m_Color: {r: 1, g: 0.55321556, b: 0, a: 1}
+  m_Color: {r: 1, g: 0, b: 0.019174099, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -323,3 +324,4 @@ MonoBehaviour:
   whatIsSolid:
     serializedVersion: 2
     m_Bits: 128
+  destroySFXName: smallProjDestroy

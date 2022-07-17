@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections;
+using Gisha.Effects.Audio;
 using Gisha.GMTK2022.Core;
 using Gisha.GMTK2022.Player.Weapons;
 using UnityEngine;
@@ -78,6 +79,8 @@ namespace Gisha.GMTK2022.Player
             _health -= dmg;
             if (_health < 0)
                 Die();
+            else
+                AudioManager.Instance.PlaySFX("hurt");
 
             Debug.Log(_health);
             HealthChanged(_health);
@@ -126,6 +129,7 @@ namespace Gisha.GMTK2022.Player
         {
             Died?.Invoke();
             gameObject.SetActive(false);
+            AudioManager.Instance.PlaySFX("die");
         }
 
         private IEnumerator InvincibleRoutine()

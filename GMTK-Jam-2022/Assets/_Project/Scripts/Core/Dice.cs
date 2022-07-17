@@ -1,4 +1,5 @@
 ﻿using System;
+using Gisha.Effects.Audio;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -40,6 +41,8 @@ namespace Gisha.GMTK2022.Core
 
         private int DiceRoll()
         {
+            AudioManager.Instance.PlaySFX("diceImpact-2");
+            
             int result = Random.Range(1, 7);
             _spriteRenderer.sprite = _sideSprites[result - 1];
             return result;
@@ -51,7 +54,7 @@ namespace Gisha.GMTK2022.Core
             {
                 _result = DiceRoll();
                 _rollDelay = rollDelay;
-                Destroy(gameObject, 1f);
+                Destroy(gameObject, rollDelay);
 
                 Debug.Log($"<color=yellow>{diceType}: {_result}</color>");
             }
@@ -61,6 +64,8 @@ namespace Gisha.GMTK2022.Core
         {
             var result = new DiceResult(_result, diceType);
             DiceRolled?.Invoke(result);
+            
+            AudioManager.Instance.PlaySFX("hurt");
         }
     }
 

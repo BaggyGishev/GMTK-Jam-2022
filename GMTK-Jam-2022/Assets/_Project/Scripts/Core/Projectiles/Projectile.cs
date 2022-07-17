@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Gisha.Effects.Audio;
+using UnityEngine;
 
 namespace Gisha.GMTK2022.Core.Projectiles
 {
@@ -13,6 +14,9 @@ namespace Gisha.GMTK2022.Core.Projectiles
         [SerializeField] private Transform pivotPoint;
         [SerializeField] private LayerMask whatIsSolid;
 
+        [SerializeField] private string destroySFXName;
+        
+        
         private Vector2 _direction;
 
         private void Start()
@@ -42,6 +46,7 @@ namespace Gisha.GMTK2022.Core.Projectiles
         private void DestroyProjectile()
         {
             Destroy(gameObject);
+            AudioManager.Instance.PlaySFX(destroySFXName);
         }
     }
 }

@@ -170,7 +170,7 @@ MonoBehaviour:
   attackDelay: 1
   moveSpeed: 4
   shootRayDist: 5
-  projectilePrefab: {fileID: 4438447444685496446, guid: 50921e4047fba2a43a9610ab5e6db341, type: 3}
+  projectilePrefab: {fileID: 4438447444685496446, guid: 65560c517cef3db4f81d5bdf8c73f915, type: 3}
 --- !u!95 &-328034889721038140
 Animator:
   serializedVersion: 3

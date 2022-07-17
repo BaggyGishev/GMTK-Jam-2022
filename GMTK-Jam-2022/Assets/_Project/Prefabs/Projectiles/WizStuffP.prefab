@@ -303,3 +303,4 @@ MonoBehaviour:
   whatIsSolid:
     serializedVersion: 2
     m_Bits: 320
+  destroySFXName: smallProjDestroy

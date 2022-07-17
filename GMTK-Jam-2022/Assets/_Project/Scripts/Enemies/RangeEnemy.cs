@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Gisha.Effects.Audio;
+using UnityEngine;
 
 namespace Gisha.GMTK2022.Enemies
 {
@@ -42,6 +43,8 @@ namespace Gisha.GMTK2022.Enemies
             Quaternion rotation = Quaternion.Euler(0f, 0f, rotZ);
 
             Instantiate(projectilePrefab, transform.position, rotation);
+            
+            AudioManager.Instance.PlaySFX("enemyShoot");
         }
         
         private void OnDrawGizmosSelected()

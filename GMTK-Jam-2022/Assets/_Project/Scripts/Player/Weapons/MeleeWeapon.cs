@@ -1,4 +1,5 @@
 ﻿using System.Linq;
+using Gisha.Effects.Audio;
 using Gisha.GMTK2022.Core;
 using UnityEngine;
 
@@ -26,6 +27,7 @@ namespace Gisha.GMTK2022.Player.Weapons
             if (IsDelayed)
                 return;
                 
+            AudioManager.Instance.PlaySFX(AttackSfx);
             _animator.SetTrigger("Use");
             MeleeAttack();
 

@@ -135,6 +135,7 @@ MonoBehaviour:
   whatIsSolid:
     serializedVersion: 2
     m_Bits: 128
+  destroySFXName: smallProjDestroy
 --- !u!1 &4537039831274978120
 GameObject:
   m_ObjectHideFlags: 0

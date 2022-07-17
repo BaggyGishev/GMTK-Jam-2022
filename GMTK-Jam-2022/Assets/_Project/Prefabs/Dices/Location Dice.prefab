@@ -386,5 +386,5 @@ MonoBehaviour:
   - {fileID: 2730908712494114126, guid: 4546186e03ee8524688f84e349fedc58, type: 3}
   - {fileID: -3214839999909819252, guid: 4546186e03ee8524688f84e349fedc58, type: 3}
   - {fileID: -4458315626740326812, guid: 4546186e03ee8524688f84e349fedc58, type: 3}
-  rollDelay: 1.25
+  rollDelay: 2
   diceType: 4

@@ -128,6 +128,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   attackDelay: 0.05
+  attackSFX: meleeAttack
   attackDmg: 2
   attackDst: 1.65
   attackRadius: 0.15

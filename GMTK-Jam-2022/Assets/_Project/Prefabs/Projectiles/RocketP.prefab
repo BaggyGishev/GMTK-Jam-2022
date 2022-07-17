@@ -135,6 +135,7 @@ MonoBehaviour:
   whatIsSolid:
     serializedVersion: 2
     m_Bits: 320
+  destroySFXName: bigProjDestroy
   subProjectilePrefab: {fileID: 4438447444685496446, guid: 06eb94b872c33264da00071243332a41, type: 3}
   projCount: 40
 --- !u!1 &5424362215787093642

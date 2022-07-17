@@ -1,4 +1,5 @@
 using System;
+using Gisha.Effects.Audio;
 using Gisha.GMTK2022.Core;
 using UnityEngine;
 
@@ -34,6 +35,7 @@ namespace Gisha.GMTK2022.Enemies
         {
             EnemyDestroyed?.Invoke();
             Destroy(gameObject);
+            AudioManager.Instance.PlaySFX("die");
         }
 
         protected void FollowPlayer()
@@ -48,6 +50,8 @@ namespace Gisha.GMTK2022.Enemies
 
             if (health <= 0)
                 Die();
+            else
+                AudioManager.Instance.PlaySFX("hurt");
 
             _rb.AddForce(direction * ResourceGetter.GameData.AttackImpulse, ForceMode2D.Impulse);
         }

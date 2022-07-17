@@ -103,6 +103,7 @@ MonoBehaviour:
   whatIsSolid:
     serializedVersion: 2
     m_Bits: 320
+  destroySFXName: smallProjDestroy
 --- !u!96 &6406234575468010888
 TrailRenderer:
   serializedVersion: 2

@@ -1,0 +1,176 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &8239155386699642847
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8239155386699642844}
+  - component: {fileID: 8239155386699642845}
+  - component: {fileID: 8239155386699642846}
+  m_Layer: 0
+  m_Name: EffectsManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8239155386699642844
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8239155386699642847}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8239155386699642845
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8239155386699642847}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ecf4889b9d97c794d84d0d3cfaf98388, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  musicCollection:
+  - name: Music
+    audioClip: {fileID: 8300000, guid: be4d818dbbf1a459e836e1b5b110492e, type: 3}
+    isLooping: 1
+    isFade: 1
+    volume: 0.5
+    pitch: 1
+  sfxCollection:
+  - name: bigProjDestroy
+    audioClip: {fileID: 8300000, guid: 1ba67602abdfcd94da951250b260eb7a, type: 3}
+    isLooping: 0
+    isFade: 0
+    volume: 1
+    pitch: 1
+  - name: click
+    audioClip: {fileID: 8300000, guid: 16c10041cab77df49b17d9e2c7ae4c30, type: 3}
+    isLooping: 0
+    isFade: 0
+    volume: 1
+    pitch: 1
+  - name: diceImpact-1
+    audioClip: {fileID: 8300000, guid: 55e9e17d769461c44800f4b0198f6ce8, type: 3}
+    isLooping: 0
+    isFade: 0
+    volume: 1
+    pitch: 1
+  - name: diceImpact-2
+    audioClip: {fileID: 8300000, guid: 0b984604ea7315f479df7eeb7a03bd97, type: 3}
+    isLooping: 0
+    isFade: 0
+    volume: 1
+    pitch: 1
+  - name: diceImpact-3
+    audioClip: {fileID: 8300000, guid: e2a178fb82477b54389352b44b67f567, type: 3}
+    isLooping: 0
+    isFade: 0
+    volume: 1
+    pitch: 1
+  - name: diceImpact-4
+    audioClip: {fileID: 8300000, guid: eeae6f47b29a5e54791937800b56cbe8, type: 3}
+    isLooping: 0
+    isFade: 0
+    volume: 1
+    pitch: 1
+  - name: diceImpact-5
+    audioClip: {fileID: 8300000, guid: 9a8fba6585ca8fe4aa9ab746f9977bd7, type: 3}
+    isLooping: 0
+    isFade: 0
+    volume: 1
+    pitch: 1
+  - name: die
+    audioClip: {fileID: 8300000, guid: 6e05d2b4268946641a996dc00a9623bb, type: 3}
+    isLooping: 0
+    isFade: 0
+    volume: 1
+    pitch: 1
+  - name: enemySpawn
+    audioClip: {fileID: 8300000, guid: 7566fc9402412364aafdc95b86a41499, type: 3}
+    isLooping: 0
+    isFade: 0
+    volume: 1
+    pitch: 1
+  - name: gunShoot
+    audioClip: {fileID: 8300000, guid: 50912807f969a1a43938a715c5a82afb, type: 3}
+    isLooping: 0
+    isFade: 0
+    volume: 1
+    pitch: 1
+  - name: hurt
+    audioClip: {fileID: 8300000, guid: 93eb06b1877763045ad5ca30656e824d, type: 3}
+    isLooping: 0
+    isFade: 0
+    volume: 1
+    pitch: 1
+  - name: lose
+    audioClip: {fileID: 8300000, guid: 73735cbe6e3d9e54e80e02a65c02d317, type: 3}
+    isLooping: 0
+    isFade: 0
+    volume: 1
+    pitch: 1
+  - name: magicShoot
+    audioClip: {fileID: 8300000, guid: 290d5332bb712f344abe2f8e8e9fdc70, type: 3}
+    isLooping: 0
+    isFade: 0
+    volume: 1
+    pitch: 1
+  - name: roundStart
+    audioClip: {fileID: 8300000, guid: f4f3e1ff11c8cc94b8fd815b414bd0af, type: 3}
+    isLooping: 0
+    isFade: 0
+    volume: 1
+    pitch: 1
+  - name: roundWin
+    audioClip: {fileID: 8300000, guid: 2ff305671e876eb43ae79cc248a52239, type: 3}
+    isLooping: 0
+    isFade: 0
+    volume: 1
+    pitch: 1
+  - name: smallProjDestroy
+    audioClip: {fileID: 8300000, guid: d30ea6d1f0a87404abaf77171e181013, type: 3}
+    isLooping: 0
+    isFade: 0
+    volume: 1
+    pitch: 1
+  - name: meleeAttack
+    audioClip: {fileID: 8300000, guid: 15392f198a8239e41abce4f187e01472, type: 3}
+    isLooping: 0
+    isFade: 0
+    volume: 1
+    pitch: 1
+  - name: enemyShoot
+    audioClip: {fileID: 8300000, guid: f36247f4b1263d640ba4a35bf44d8be7, type: 3}
+    isLooping: 0
+    isFade: 0
+    volume: 1
+    pitch: 1
+  fadeTransitionSpeed: 0.1
+--- !u!114 &8239155386699642846
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8239155386699642847}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fa2ff00276b0776469f155ed2733ba8f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  effectsCollection: []

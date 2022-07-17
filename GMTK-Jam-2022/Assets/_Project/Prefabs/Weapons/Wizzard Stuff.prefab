@@ -127,6 +127,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   attackDelay: 1
+  attackSFX: magicShoot
   shotPos: {fileID: 6460123449853546618}
   projectilePrefab: {fileID: 4438447444685496446, guid: 747812136f4e59d4b984c089bd28aaeb, type: 3}
   projCount: 3

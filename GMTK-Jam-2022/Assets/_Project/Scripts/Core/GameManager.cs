@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using Gisha.Effects.Audio;
 using Gisha.GMTK2022.Player;
 using UnityEngine;
 
@@ -94,21 +95,27 @@ namespace Gisha.GMTK2022.Core
             _playerController.TakeWeapon(ResourceGetter.GameData.WeaponPrefabs[_weaponType]);
             _locationChanger.SetupBattleLocation(_locationType);
 
+            AudioManager.Instance.PlaySFX("roundStart");
+            
             // Spawning enemies.
             while (BattleRounds > 0)
             {
                 _battleRounds = BattleRounds - 1;
                 _enemyGenerator.Generate(_enemyType, _enemyCount);
+                AudioManager.Instance.PlaySFX("enemySpawn");
                 yield return RoundRoutine();
             }
 
             while (GameObject.FindGameObjectsWithTag("Enemy").Length > 0)
                 yield return new WaitForSeconds(0.25f);
 
+            
             _playerController.HealOne();
             InitiateStage(GameStage.Dicing);
             _winStreak++;
             LevelWon?.Invoke(_winStreak);
+            
+            AudioManager.Instance.PlaySFX("roundWin");
         }
 
         private IEnumerator RoundRoutine()
@@ -138,6 +145,7 @@ namespace Gisha.GMTK2022.Core
 
             _diceResults.Clear();
 
+            AudioManager.Instance.PlaySFX("diceImpact-3");
             Instantiate(GameData.MasterDicePrefab, Vector3.zero, Quaternion.identity);
             for (int i = 0; i < GameData.RulesDicePrefabs.Length; i++)
             {
