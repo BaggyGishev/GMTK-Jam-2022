@@ -1,4 +1,5 @@
-﻿using Gisha.GMTK2022.Core;
+﻿using System.Collections;
+using Gisha.GMTK2022.Core;
 using Gisha.GMTK2022.Player.Weapons;
 using UnityEngine;
 
@@ -50,13 +51,20 @@ namespace Gisha.GMTK2022.Player
 
         public void TakeDamage(int dmg, Vector2 direction)
         {
-            _health -= dmg;
+            StartCoroutine(DamageGettingRoutine(dmg, direction));
+        }
 
+        private IEnumerator DamageGettingRoutine(int dmg, Vector2 direction)
+        {
             _stunDelay = 0.2f;
             _rb.AddForce(direction.normalized * ResourceGetter.GameData.AttackImpulse, ForceMode2D.Impulse);
+
+            yield return new WaitForEndOfFrame();
+            _health -= dmg;
             if (_health < 0)
                 Die();
         }
+
 
         private Vector2 GetKeyboardInput()
         {
@@ -77,7 +85,7 @@ namespace Gisha.GMTK2022.Player
                 _stunDelay -= Time.deltaTime;
                 return;
             }
-            
+
             _rb.velocity = _moveInput * moveSpeed * Time.deltaTime;
         }
 

@@ -166,6 +166,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 3
-  attackDelay: 0.5
+  attackDelay: 0.6
   moveSpeed: 1
   attackDst: 0.6
