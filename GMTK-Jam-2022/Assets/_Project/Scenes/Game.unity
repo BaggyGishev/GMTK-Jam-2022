@@ -307,6 +307,7 @@ GameObject:
   - component: {fileID: 283484038}
   - component: {fileID: 283484040}
   - component: {fileID: 283484039}
+  - component: {fileID: 283484041}
   m_Layer: 5
   m_Name: Rounds Count
   m_TagString: Untagged
@@ -341,7 +342,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 283484037}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
@@ -372,6 +373,26 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 283484037}
   m_CullTransparentMesh: 1
+--- !u!114 &283484041
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 283484037}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: acacea6951f04e779c4d25c7caf04d57, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  roundCountSprites:
+  - {fileID: -4004799030542767357, guid: 4546186e03ee8524688f84e349fedc58, type: 3}
+  - {fileID: 8872731310283885932, guid: 4546186e03ee8524688f84e349fedc58, type: 3}
+  - {fileID: 8063289470091138377, guid: 4546186e03ee8524688f84e349fedc58, type: 3}
+  - {fileID: -9052891593511727859, guid: 4546186e03ee8524688f84e349fedc58, type: 3}
+  - {fileID: 2406314756278499121, guid: 4546186e03ee8524688f84e349fedc58, type: 3}
+  - {fileID: 1006622695898767445, guid: 4546186e03ee8524688f84e349fedc58, type: 3}
+  roundCountImage: {fileID: 283484039}
 --- !u!1 &452589492
 GameObject:
   m_ObjectHideFlags: 0

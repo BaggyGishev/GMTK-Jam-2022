@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using Gisha.GMTK2022.Player;
 using UnityEngine;
@@ -20,6 +21,8 @@ namespace Gisha.GMTK2022.Core
         [Space] [SerializeField] private float circularRadius = 2f;
         [SerializeField] private float maxRoundTime = 6f;
 
+        public static Action RoundEnded;
+
         // Round Variables.
         private int _battleRounds;
         private int _enemyCount, _enemyType, _weaponType, _locationType;
@@ -28,7 +31,8 @@ namespace Gisha.GMTK2022.Core
         private GameData GameData => ResourceGetter.GameData;
         public float MaxRoundTime => maxRoundTime;
         public GameStage CurrentStage => _currentStage;
-        
+        public int BattleRounds => _battleRounds;
+
         private Stack<DiceResult> _diceResults = new Stack<DiceResult>();
         private EnemyGenerator _enemyGenerator;
         private LocationChanger _locationChanger;
@@ -87,9 +91,9 @@ namespace Gisha.GMTK2022.Core
             _locationChanger.SetupBattleLocation(_locationType);
 
             // Spawning enemies.
-            while (_battleRounds > 0)
+            while (BattleRounds > 0)
             {
-                _battleRounds--;
+                _battleRounds = BattleRounds - 1;
                 _enemyGenerator.Generate(_enemyType, _enemyCount);
                 yield return RoundRoutine();
             }
@@ -103,11 +107,13 @@ namespace Gisha.GMTK2022.Core
         private IEnumerator RoundRoutine()
         {
             RoundTime = MaxRoundTime;
+            RoundEnded?.Invoke();
 
             while (RoundTime > 0f)
             {
                 RoundTime -= Time.deltaTime;
                 yield return null;
+                RoundEnded?.Invoke();
             }
         }
 
