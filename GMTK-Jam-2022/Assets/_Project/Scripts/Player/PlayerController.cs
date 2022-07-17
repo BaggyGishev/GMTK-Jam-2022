@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using Gisha.GMTK2022.Core;
 using Gisha.GMTK2022.Player.Weapons;
 using UnityEngine;
@@ -11,12 +12,15 @@ namespace Gisha.GMTK2022.Player
         [SerializeField] private int maxHealth = 3;
         [SerializeField] private float moveSpeed = 1f;
         [SerializeField] private Transform handTrans;
+        [Space] [SerializeField] private float invincibleTime = 0.2f;
 
         public static Action<int> HealthChanged;
         public static Action Died;
 
         private float _stunDelay;
         private int _health;
+        private bool _isInvincible;
+
         private Vector2 _moveInput;
         private Rigidbody2D _rb;
         private Weapon _weapon;
@@ -65,6 +69,9 @@ namespace Gisha.GMTK2022.Player
 
         public void TakeDamage(int dmg, Vector2 direction)
         {
+            if (_isInvincible)
+                return;
+
             _stunDelay = 0.2f;
             _rb.AddForce(direction.normalized * ResourceGetter.GameData.AttackImpulse, ForceMode2D.Impulse);
 
@@ -75,6 +82,9 @@ namespace Gisha.GMTK2022.Player
             Debug.Log(_health);
             HealthChanged(_health);
             _animator.SetTrigger("TakeDamage");
+
+            // Little helper for the player to reduce instant kill scenario from various targets.
+            StartCoroutine(InvincibleRoutine());
         }
 
         public void HealOne()
@@ -116,6 +126,13 @@ namespace Gisha.GMTK2022.Player
         {
             Died?.Invoke();
             gameObject.SetActive(false);
+        }
+
+        private IEnumerator InvincibleRoutine()
+        {
+            _isInvincible = true;
+            yield return new WaitForSeconds(invincibleTime);
+            _isInvincible = false;
         }
     }
 }
