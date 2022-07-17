@@ -23,7 +23,7 @@ namespace Gisha.GMTK2022.UI
         {
             for (int i = 0; i < hearts.Length; i++)
             {
-                if (i < count - 1)
+                if (i < count)
                     hearts[i].sprite = fullHeartSprite;
                 else
                     hearts[i].sprite = emptyHeartSprite;

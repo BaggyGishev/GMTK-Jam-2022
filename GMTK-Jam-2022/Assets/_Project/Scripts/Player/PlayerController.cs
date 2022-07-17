@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections;
 using Gisha.GMTK2022.Core;
 using Gisha.GMTK2022.Player.Weapons;
 using UnityEngine;
@@ -21,9 +20,11 @@ namespace Gisha.GMTK2022.Player
         private Vector2 _moveInput;
         private Rigidbody2D _rb;
         private Weapon _weapon;
+        private Animator _animator;
 
         private void Awake()
         {
+            _animator = GetComponent<Animator>();
             _rb = GetComponent<Rigidbody2D>();
         }
 
@@ -71,7 +72,9 @@ namespace Gisha.GMTK2022.Player
             if (_health < 0)
                 Die();
 
+            Debug.Log(_health);
             HealthChanged(_health);
+            _animator.SetTrigger("TakeDamage");
         }
 
         public void HealOne()
@@ -101,9 +104,11 @@ namespace Gisha.GMTK2022.Player
             if (_stunDelay > 0f)
             {
                 _stunDelay -= Time.deltaTime;
+                _animator.SetBool("IsIdle", true);
                 return;
             }
 
+            _animator.SetBool("IsIdle", _moveInput.magnitude <= 0);
             _rb.velocity = _moveInput * moveSpeed * Time.deltaTime;
         }
 
