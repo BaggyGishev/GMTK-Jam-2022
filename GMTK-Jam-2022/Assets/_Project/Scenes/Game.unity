@@ -140,7 +140,7 @@ GameObject:
   - component: {fileID: 452589496}
   - component: {fileID: 452589495}
   - component: {fileID: 452589494}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: 1 Map
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1568,7 +1568,7 @@ GameObject:
   - component: {fileID: 874184672}
   - component: {fileID: 874184671}
   - component: {fileID: 874184670}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: 5 Map
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3766,7 +3766,7 @@ GameObject:
   - component: {fileID: 976180967}
   - component: {fileID: 976180966}
   - component: {fileID: 976180965}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: 4 Map
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5103,7 +5103,7 @@ GameObject:
   - component: {fileID: 1019530919}
   - component: {fileID: 1019530918}
   - component: {fileID: 1019530917}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: 6 Map
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6770,7 +6770,7 @@ GameObject:
   - component: {fileID: 1034382437}
   - component: {fileID: 1034382436}
   - component: {fileID: 1034382438}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: BettingMap
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7822,7 +7822,7 @@ GameObject:
   - component: {fileID: 1138169563}
   - component: {fileID: 1138169562}
   - component: {fileID: 1138169561}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: 3 Map
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9539,7 +9539,7 @@ GameObject:
   - component: {fileID: 1655011361}
   - component: {fileID: 1655011360}
   - component: {fileID: 1655011359}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: 2 Map
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10847,10 +10847,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
-    - target: {fileID: 8246274755934660475, guid: 412aaef86be82ed4d8ff927652d4085b, type: 3}
-      propertyPath: m_Layer
-      value: 7
-      objectReference: {fileID: 0}
     - target: {fileID: 8246274755934660476, guid: 412aaef86be82ed4d8ff927652d4085b, type: 3}
       propertyPath: m_RootOrder
       value: 3
@@ -10894,10 +10890,6 @@ PrefabInstance:
     - target: {fileID: 8246274755934660476, guid: 412aaef86be82ed4d8ff927652d4085b, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8246274756026946803, guid: 412aaef86be82ed4d8ff927652d4085b, type: 3}
-      propertyPath: m_Layer
-      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 412aaef86be82ed4d8ff927652d4085b, type: 3}

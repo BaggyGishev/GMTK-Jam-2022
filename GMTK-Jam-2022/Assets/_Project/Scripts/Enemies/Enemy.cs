@@ -5,20 +5,23 @@ namespace Gisha.GMTK2022.Enemies
 {
     public class Enemy : MonoBehaviour, IDamageable
     {
-        [SerializeField] private int health;
-        [SerializeField] private float attackDelay;
-        [SerializeField] private float moveSpeed;
-        
+        [SerializeField] private int health = 3;
+        [SerializeField] private float attackDelay = 0.5f;
+        [SerializeField] private float moveSpeed = 1f;
         protected float _delay;
 
         public float AttackDelay => attackDelay;
 
         public float MoveSpeed => moveSpeed;
-
+        
+        protected LayerMask _playerLayerMask;
+        protected Transform _target;
         private Rigidbody2D _rb;
 
-        private void Awake()
+        public virtual void Awake()
         {
+            _playerLayerMask = 1 << LayerMask.NameToLayer("Player");
+            _target = GameObject.FindGameObjectWithTag("Player").transform;
             _rb = GetComponent<Rigidbody2D>();
         }
 

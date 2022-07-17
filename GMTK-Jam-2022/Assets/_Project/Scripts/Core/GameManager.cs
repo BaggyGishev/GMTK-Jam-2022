@@ -136,12 +136,12 @@ namespace Gisha.GMTK2022.Core
 
         public void LocationSetup()
         {
-            Object.FindObjectOfType<LocationChanger>().SetupBattleLocation(_locationRule.Result);
+            Object.FindObjectOfType<LocationChanger>().SetupBattleLocation(_locationRule.Result - 1);
         }
 
         public void EnemySetup()
         {
-            Object.FindObjectOfType<EnemyGenerator>().Generate(0, 2);
+            Object.FindObjectOfType<EnemyGenerator>().Generate(_enemyTypeRule.Result - 1, _enemyCountRule.Result);
         }
     }
 }

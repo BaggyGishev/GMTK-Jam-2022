@@ -22,4 +22,9 @@ MonoBehaviour:
   - {fileID: 5676709652914497493, guid: b779bfb08989cf3499de3203dc279047, type: 3}
   enemyPrefabs:
   - {fileID: 6973448764408172083, guid: eecf562abc8a95947bd7569747cec849, type: 3}
-  attackImpulse: 5.5
+  - {fileID: 236204292858737272, guid: 4cef98a52d0b1b546872dd10f3ebc681, type: 3}
+  - {fileID: 8046639581004059631, guid: 0d3336bbc8ecf62439f7c2a326c04498, type: 3}
+  - {fileID: 5373082949847270511, guid: ba03581c332d210428057096546f7b39, type: 3}
+  - {fileID: 1129206490072893986, guid: c2d50e5bde9f42c4392e7e60fc0e5c92, type: 3}
+  - {fileID: 2978308556805074375, guid: 53f869d75fa34f34788d4069a8207c8c, type: 3}
+  attackImpulse: 15

@@ -6,18 +6,9 @@ namespace Gisha.GMTK2022.Enemies
     public class MeleeEnemy : Enemy
     {
         [Header("Melee Variables")] public float attackDst;
-
-        private LayerMask _playerLayerMask;
         private Vector2 _viewDir;
-        private Transform _target;
-
-        private void Start()
-        {
-            _playerLayerMask = 1 << LayerMask.NameToLayer("Player");
-            _target = GameObject.FindGameObjectWithTag("Player").transform;
-        }
-
-        private void Update()
+        
+        private void FixedUpdate()
         {
             _viewDir = (_target.transform.position - transform.position).normalized;
             RaycastHit2D hitInfo = Physics2D.Raycast(transform.position, _viewDir, attackDst, _playerLayerMask);

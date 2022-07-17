@@ -52,6 +52,8 @@ namespace Gisha.GMTK2022.Core
                 _result = DiceRoll();
                 _rollDelay = rollDelay;
                 Destroy(gameObject, 1f);
+
+                Debug.Log($"<color=yellow>{diceType}: {_result}</color>");
             }
         }
 
