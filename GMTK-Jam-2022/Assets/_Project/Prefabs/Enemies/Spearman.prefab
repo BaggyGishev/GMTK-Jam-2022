@@ -166,7 +166,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 1
-  attackDelay: 1
+  attackDelay: 1.5
   moveSpeed: 3
   shootRayDist: 4
   projectilePrefab: {fileID: 4438447444685496446, guid: 50921e4047fba2a43a9610ab5e6db341, type: 3}

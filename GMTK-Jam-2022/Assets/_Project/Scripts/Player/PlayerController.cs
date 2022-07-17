@@ -14,6 +14,7 @@ namespace Gisha.GMTK2022.Player
         [SerializeField] private Transform handTrans;
 
         public static Action<int> HealthChanged;
+        public static Action Died;
 
         private float _stunDelay;
         private int _health;
@@ -63,7 +64,14 @@ namespace Gisha.GMTK2022.Player
 
         public void TakeDamage(int dmg, Vector2 direction)
         {
-            StartCoroutine(DamageGettingRoutine(dmg, direction));
+            _stunDelay = 0.2f;
+            _rb.AddForce(direction.normalized * ResourceGetter.GameData.AttackImpulse, ForceMode2D.Impulse);
+
+            _health -= dmg;
+            if (_health < 0)
+                Die();
+
+            HealthChanged(_health);
         }
 
         public void HealOne()
@@ -71,19 +79,6 @@ namespace Gisha.GMTK2022.Player
             _health++;
             if (_health > maxHealth)
                 _health = maxHealth;
-
-            HealthChanged(_health);
-        }
-
-        private IEnumerator DamageGettingRoutine(int dmg, Vector2 direction)
-        {
-            _stunDelay = 0.2f;
-            _rb.AddForce(direction.normalized * ResourceGetter.GameData.AttackImpulse, ForceMode2D.Impulse);
-
-            yield return new WaitForEndOfFrame();
-            _health -= dmg;
-            if (_health < 0)
-                Die();
 
             HealthChanged(_health);
         }
@@ -114,6 +109,7 @@ namespace Gisha.GMTK2022.Player
 
         private void Die()
         {
+            Died?.Invoke();
             gameObject.SetActive(false);
         }
     }
