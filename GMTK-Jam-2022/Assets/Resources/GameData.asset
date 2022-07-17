@@ -32,4 +32,4 @@ MonoBehaviour:
   - {fileID: 5373082949847270511, guid: ba03581c332d210428057096546f7b39, type: 3}
   - {fileID: 1129206490072893986, guid: c2d50e5bde9f42c4392e7e60fc0e5c92, type: 3}
   - {fileID: 2978308556805074375, guid: 53f869d75fa34f34788d4069a8207c8c, type: 3}
-  attackImpulse: 15
+  attackImpulse: 7

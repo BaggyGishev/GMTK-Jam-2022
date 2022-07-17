@@ -211,7 +211,7 @@ namespace Gisha.GMTK2022.Core
 
         public void WeaponSetup(out int weaponType)
         {
-            weaponType = _weaponRule.Result - 1;
+            weaponType = 5;
         }
 
         public void LocationSetup(out int locationType)

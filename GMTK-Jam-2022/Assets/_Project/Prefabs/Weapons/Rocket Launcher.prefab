@@ -149,7 +149,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   attackDelay: 1.2
   shotPos: {fileID: 2767259597809235156}
-  projectilePrefab: {fileID: 4438447444685496446, guid: 1d6b52fcc88ab1444b9a04e05d7cc8c4, type: 3}
+  projectilePrefab: {fileID: 4438447444685496446, guid: 50bbf228427c3da45bc97203201d9aef, type: 3}
   projCount: 1
   spread: 0
 --- !u!1 &2767259597809235157
