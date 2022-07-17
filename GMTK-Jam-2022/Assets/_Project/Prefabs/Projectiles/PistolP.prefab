@@ -97,7 +97,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lifeTime: 5
-  flySpeed: 7
+  flySpeed: 9
   damage: 1
   pivotPoint: {fileID: 4438447444685496444}
   whatIsSolid:
