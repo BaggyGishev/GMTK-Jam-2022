@@ -23,8 +23,17 @@ namespace Gisha.GMTK2022.Player.Weapons
 
         public override void Use()
         {
+            if (IsDelayed)
+                return;
+                
             _animator.SetTrigger("Use");
+            MeleeAttack();
 
+            StartCoroutine(DelayRoutine());
+        }
+
+        private void MeleeAttack()
+        {
             var hits =
                 Physics2D.CircleCastAll(transform.position, attackRadius, transform.right, attackDst,
                     _enemyLayerMask);
@@ -35,10 +44,10 @@ namespace Gisha.GMTK2022.Player.Weapons
 
                 foreach (var hit in hits)
                     hit.collider.GetComponent<IDamageable>()
-                        .TakeDamage(attackDmg, hit.point - (Vector2)transform.position);
+                        .TakeDamage(attackDmg, hit.point - (Vector2) transform.position);
             }
         }
-
+        
         private void OnDrawGizmosSelected()
         {
             Gizmos.color = Color.red;

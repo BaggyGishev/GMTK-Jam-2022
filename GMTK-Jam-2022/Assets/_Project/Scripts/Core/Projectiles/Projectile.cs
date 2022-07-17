@@ -1,7 +1,7 @@
-﻿namespace Gisha.GMTK2022.Core
-{
-    using UnityEngine;
+﻿using UnityEngine;
 
+namespace Gisha.GMTK2022.Core.Projectiles
+{
     public class Projectile : MonoBehaviour
     {
         [Header("Projectile Variables")] [SerializeField]

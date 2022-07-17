@@ -130,7 +130,7 @@ namespace Gisha.GMTK2022.Core
 
         public void WeaponSetup()
         {
-            var prefab = ResourceGetter.GameData.WeaponPrefabs[0];
+            var prefab = ResourceGetter.GameData.WeaponPrefabs[_weaponRule.Result - 1];
             Object.FindObjectOfType<PlayerController>().TakeWeapon(prefab);
         }
 
