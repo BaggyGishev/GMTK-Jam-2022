@@ -138,6 +138,7 @@ GameObject:
   m_Component:
   - component: {fileID: 149022361}
   - component: {fileID: 149022362}
+  - component: {fileID: 149022363}
   m_Layer: 5
   m_Name: Health
   m_TagString: Untagged
@@ -193,6 +194,24 @@ MonoBehaviour:
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
   m_ReverseArrangement: 0
+--- !u!114 &149022363
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 149022360}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7f2d4381a710427abb799dd3be91daee, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hearts:
+  - {fileID: 1187136037}
+  - {fileID: 1721587280}
+  - {fileID: 1292437831}
+  fullHeartSprite: {fileID: -1722881571359679833, guid: 4546186e03ee8524688f84e349fedc58, type: 3}
+  emptyHeartSprite: {fileID: -7003377409362576039, guid: 4546186e03ee8524688f84e349fedc58, type: 3}
 --- !u!1 &198792997
 GameObject:
   m_ObjectHideFlags: 0
@@ -205,6 +224,7 @@ GameObject:
   - component: {fileID: 198793000}
   - component: {fileID: 198792999}
   - component: {fileID: 198792998}
+  - component: {fileID: 198793002}
   m_Layer: 5
   m_Name: Dynamic GUI
   m_TagString: Untagged
@@ -296,6 +316,26 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &198793002
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 198792997}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: acacea6951f04e779c4d25c7caf04d57, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  roundCountSprites:
+  - {fileID: -4004799030542767357, guid: 4546186e03ee8524688f84e349fedc58, type: 3}
+  - {fileID: 8872731310283885932, guid: 4546186e03ee8524688f84e349fedc58, type: 3}
+  - {fileID: 8063289470091138377, guid: 4546186e03ee8524688f84e349fedc58, type: 3}
+  - {fileID: -9052891593511727859, guid: 4546186e03ee8524688f84e349fedc58, type: 3}
+  - {fileID: 2406314756278499121, guid: 4546186e03ee8524688f84e349fedc58, type: 3}
+  - {fileID: 1006622695898767445, guid: 4546186e03ee8524688f84e349fedc58, type: 3}
+  roundCountImage: {fileID: 283484039}
 --- !u!1 &283484037
 GameObject:
   m_ObjectHideFlags: 0
@@ -307,7 +347,6 @@ GameObject:
   - component: {fileID: 283484038}
   - component: {fileID: 283484040}
   - component: {fileID: 283484039}
-  - component: {fileID: 283484041}
   m_Layer: 5
   m_Name: Rounds Count
   m_TagString: Untagged
@@ -342,7 +381,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 283484037}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
@@ -373,26 +412,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 283484037}
   m_CullTransparentMesh: 1
---- !u!114 &283484041
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 283484037}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: acacea6951f04e779c4d25c7caf04d57, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  roundCountSprites:
-  - {fileID: -4004799030542767357, guid: 4546186e03ee8524688f84e349fedc58, type: 3}
-  - {fileID: 8872731310283885932, guid: 4546186e03ee8524688f84e349fedc58, type: 3}
-  - {fileID: 8063289470091138377, guid: 4546186e03ee8524688f84e349fedc58, type: 3}
-  - {fileID: -9052891593511727859, guid: 4546186e03ee8524688f84e349fedc58, type: 3}
-  - {fileID: 2406314756278499121, guid: 4546186e03ee8524688f84e349fedc58, type: 3}
-  - {fileID: 1006622695898767445, guid: 4546186e03ee8524688f84e349fedc58, type: 3}
-  roundCountImage: {fileID: 283484039}
 --- !u!1 &452589492
 GameObject:
   m_ObjectHideFlags: 0

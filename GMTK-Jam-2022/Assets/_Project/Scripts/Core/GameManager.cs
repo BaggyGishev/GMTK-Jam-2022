@@ -176,7 +176,6 @@ namespace Gisha.GMTK2022.Core
             while (results.Count > 0)
             {
                 var result = results.Pop();
-                Debug.Log(results.Count);
                 switch (result.DiceType)
                 {
                     case DiceType.Master:
